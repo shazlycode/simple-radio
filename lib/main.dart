@@ -36,14 +36,15 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     player.setAudioSource(AudioSource.uri(
-      Uri.parse('http://s29.myradiostream.com:11940/;'),
+      Uri.parse('https://n06.radiojar.com/8s5u5tpdtwzuv'),
       tag: MediaItem(
         // Specify a unique ID for each media item:
         id: '1',
         // Metadata to display in the notification:
-        album: "Music Ahmed",
-        title: "Eltesht 2aly",
-        artUri: Uri.parse('https://example.com/albumart.jpg'),
+        album: "القران الكريم",
+        title: "اذاعة القران الكريم من القاهرة",
+        artUri: Uri.parse(
+            'https://yt3.googleusercontent.com/4Vm0-Cpqiumoi1LcdJiAov3JAWAdNJ9VQc9KWCSGYx3zfj7j7LgBlHdOyX82UUtPpG7cx0Sz=s900-c-k-c0x00ffffff-no-rj'),
       ),
     ));
   }
@@ -52,15 +53,32 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          child: IconButton(
-              onPressed: () async {
-                setState(() {
-                  player.playerState.playing ? player.pause() : player.play();
-                });
-              },
-              icon: Icon(
-                  player.playerState.playing ? Icons.pause : Icons.play_arrow)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 300,
+              width: 300,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      fit: BoxFit.contain,
+                      image: NetworkImage(
+                          'https://yt3.googleusercontent.com/4Vm0-Cpqiumoi1LcdJiAov3JAWAdNJ9VQc9KWCSGYx3zfj7j7LgBlHdOyX82UUtPpG7cx0Sz=s900-c-k-c0x00ffffff-no-rj'))),
+            ),
+            IconButton(
+                onPressed: () async {
+                  setState(() {
+                    player.playerState.playing ? player.pause() : player.play();
+                  });
+                },
+                icon: Icon(
+                  player.playerState.playing
+                      ? Icons.pause_circle_filled
+                      : Icons.play_arrow_rounded,
+                  size: 50,
+                )),
+          ],
         ),
       ),
     );
